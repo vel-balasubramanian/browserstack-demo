@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import useWindowSize from '../utils/useWindowSize';
 import './style.scss';
+import { isSafari } from 'react-device-detect';
 
 const Header = () => {
   const userName = store2.session.get('username');
@@ -120,7 +121,8 @@ const Header = () => {
                 )}
               </a>
             </Link>
-            <nav className="space-x-4 ml-6" style={{ display: 'flex' }}>
+            { isSafari ? 
+            <nav className="space-x-4 ml-6" style={{ display: 'grid' }}>
               <Link href="/offers">
                 <a id="offers" className="Navbar_link__3Blki"><strong>Offers</strong></a>
               </Link>
@@ -132,7 +134,19 @@ const Header = () => {
                   <strong>Favourites</strong>
                 </a>
               </Link>
-            </nav>
+            </nav> :  <nav className="space-x-4 ml-6" style={{ display: 'flex' }}>
+              <Link href="/offers">
+                <a id="offers" className="Navbar_link__3Blki"><strong>Offers</strong></a>
+              </Link>
+              <Link href="/orders">
+                <a id="orders" className="Navbar_link__3Blki"><strong>Orders</strong></a>
+              </Link>
+              <Link href="/favourites">
+                <a id="favourites" className="Navbar_link__3Blki">
+                  <strong>Favourites</strong>
+                </a>
+              </Link>
+            </nav> }
           </div>
           <div className="flex flex-1 justify-end align-center space-x-8">
             {userName ? (<span className="username">{userName}</span>) : ''}
