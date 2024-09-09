@@ -134,7 +134,8 @@ const Header = () => {
                   <strong>Favourites</strong>
                 </a>
               </Link>
-            </nav> :  <nav className="space-x-4 ml-6" style={{ display: 'flex' }}>
+            </nav> :  
+            <nav className="space-x-4 ml-6" style={{ display: 'flex' }}>
               <Link href="/offers">
                 <a id="offers" className="Navbar_link__3Blki"><strong>Offers</strong></a>
               </Link>
