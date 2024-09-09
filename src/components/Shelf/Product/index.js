@@ -58,6 +58,10 @@ const Product = props => {
     // Bug: Add to cart does not work for Chrome for few products
     if (!(isChrome && product.id % 4 === 0)) {
       props.addProduct(product)
+
+      if (product.isFav) {
+        product.isFav = false;
+      }
     }
   };
 
