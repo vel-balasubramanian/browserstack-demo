@@ -35,6 +35,10 @@ export default (req, res) => {
       lat: 19,
       lon: 72
     },
+    delhi: {
+      lat: 28,
+      lon: 77
+    },
     london: {
       lat: 51,
       lon: 0
@@ -50,6 +54,23 @@ export default (req, res) => {
     sydney: {
       lat: -33,
       lon: 151
+    },
+    // Bug: NY, HK, Chennai, Paris, Delhi are not suppose to have offers but they do
+    "new york": {
+      lat: 40,
+      lon: -74
+    },
+    "hong kong": {
+      lat: 22,
+      lon: 114
+    },
+    chennai: {
+      lat: 13,
+      lon: 80
+    },
+    paris: {
+      lat: 48,
+      lon: 2
     }
   }
   const citiesKeys = Object.keys(citiesCoords);
