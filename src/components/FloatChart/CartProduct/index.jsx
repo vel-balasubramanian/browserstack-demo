@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  isFirefox,
-  browserVersion
+  isEdge,
 } from "react-device-detect";
 
 import Thumb from '../../Thumb';
@@ -47,9 +46,8 @@ class CartProduct extends Component {
 
   render() {
     const { product, removeProduct } = this.props;
-    const isFirefox50 = isFirefox && browserVersion == 50;
-    // Bug: Hide first product image for firefox 50
-    const hideFirstProductImageForFirefox50 = product.id === 1 && isFirefox50;
+    // Bug: Hide alternate product image for Edge
+    const hideAlternateProductImageForEdge = product.id % 2 === 0 && isEdge;
 
     const classes = ['shelf-item'];
 
@@ -67,7 +65,7 @@ class CartProduct extends Component {
         />
         <Thumb
           classes="shelf-item__thumb"
-          src={hideFirstProductImageForFirefox50 ? '' : product.sku && require(`../../../../public/static/${product.sku}`)}
+          src={hideAlternateProductImageForEdge ? '' : product.sku && require(`../../../../public/static/${product.sku}`)}
           alt={product.title}
         />
         <div className="shelf-item__details">
