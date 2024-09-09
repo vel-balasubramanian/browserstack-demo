@@ -121,7 +121,7 @@ const Header = () => {
                 )}
               </a>
             </Link>
-            { isSafari ? 
+            { isSafari || isOpera ? 
             <nav className="space-x-4 ml-6" style={{ display: 'grid' }}>
               <Link href="/offers">
                 <a id="offers" className="Navbar_link__3Blki"><strong>Offers</strong></a>
