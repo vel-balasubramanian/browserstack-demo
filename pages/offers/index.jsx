@@ -6,6 +6,7 @@ import store2 from 'store2';
 import Router from 'next/router';
 import axios from '../../src/services/axios';
 import './style.scss';
+import { isFirefox } from 'react-device-detect';
 
 const Offers = () => {
   const [geoLocationError, setGeoLocationError] = useState('');
@@ -60,7 +61,7 @@ const Offers = () => {
       <Header />
       <main className="fit">
         <div className="mx-auto max-w-8xl px-6">
-          <div className="flex-1 p-10 flex flex-col justify-center items-center">
+          <div className={`flex-1 p-10 flex flex-col justify-center items-center ${isFirefox ? "flex-col" : "flex-row"}`}>
             {geoLocationError ? (
               <div className="pt-6 text-2xl font-bold tracking-wide text-center text-red-50">
                 {geoLocationError}
@@ -69,7 +70,7 @@ const Offers = () => {
                 <div className="p-6 text-2xl tracking-wide text-center text-red-50">
                   We've promotional offers in your location.
                 </div>
-                <div className="pt-6 text-2xl font-bold tracking-wide text-center text-red-50 offers-listing justify-center">
+                <div className={`pt-6 text-2xl font-bold tracking-wide text-center text-red-50 offers-listing ${isFirefox ? "justify-center" : ""}`}>
                     {Object.keys(offers).map((offer) => (
                       <div id={offer} key={offer} className="offer">
                         <img style={{height: '150px'}} alt={offer} src={require(`../../public/static/${offers[offer].imageId}`)} />
