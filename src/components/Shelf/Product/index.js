@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import {
   isChrome,
   isFirefox,
-  browserVersion
+  browserVersion,
+  isEdge
 } from "react-device-detect";
 
 import { setFavProduct } from '../../../services/shelf/actions';
@@ -72,7 +73,7 @@ const Product = props => {
       <Thumb
         classes="shelf-item__thumb"
         src={isImageNotLoadingUser(username) || hideFirstProductImageForFirefox130 ? '' : product.sku && require(`../../../../public/static/${product.sku}`)}
-        alt={product.title}
+        alt={ !isEdge? product.title: ''}
       />
       <p className="shelf-item__title">{product.title}</p>
       <div className="shelf-item__price">
