@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 import useWindowSize from '../utils/useWindowSize';
 import './style.scss';
-import { isSafari } from 'react-device-detect';
+import { isSafari, isOpera } from 'react-device-detect';
 
 const Header = () => {
   const userName = store2.session.get('username');
