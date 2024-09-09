@@ -4,7 +4,7 @@ import Router from 'next/router';
 
 import useWindowSize from '../utils/useWindowSize';
 import './style.scss';
-import { isSafari, isOpera } from 'react-device-detect';
+import { isSafari, isOpera, isTablet, isMobile } from 'react-device-detect';
 
 const Header = () => {
   const userName = store2.session.get('username');
@@ -151,11 +151,31 @@ const Header = () => {
           </div>
           <div className="flex flex-1 justify-end align-center space-x-8">
             {userName ? (<span className="username">{userName}</span>) : ''}
+            {isTablet || isMobile ? 
             <nav className="UserNav_root__343id align-center pt-1">
               <Link href="/offers">
                 <a onClick={logOutHandler} className="Navbar_link__3Blki logout-link" id={userName ? "logout" : "signin"}>{userName ? 'Logout' : 'Sign In'}</a>
               </Link>
-            </nav>
+            </nav> :
+            <nav className="UserNav_root__343id align-center pt-1">
+            <Link href="/offers">
+               <a
+                 onClick={logOutHandler}
+                 id={userName ? "logout" : "Sign In"}
+                 style={{
+                   display: 'inline-block',
+                   position: userName ? 'absolute' : 'relative',
+                   right: userName ? '50px' : 'auto', // Misalign logout
+                   top: userName ? '-10px' : '5px',   // Misalign both
+                   left: !userName ? '-20px' : 'auto', // Misalign sign in
+                   fontSize: '18px',
+                   marginLeft: userName ? '0px' : '20px', // Adjust sign in spacing
+                 }}
+               >
+                 {userName ? 'Logout' : 'Sign In'}
+               </a>
+             </Link>
+           </nav> }
           </div>
         </div>
       </div>
