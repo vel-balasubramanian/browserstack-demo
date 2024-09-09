@@ -59,7 +59,7 @@ class Shelf extends Component {
   ) => {
     const { filteredProducts } = { ...this.state };
     if (window.location.href.indexOf('/favourites') >= 0 && filteredProducts.length !== 0) {
-      const products = filteredProducts.filter((product) => product.isFav);
+      const products = filteredProducts.filter((product) => product.isFav).slice(0, 3);
       this.setState({ filteredProducts: products })
     } else if (filteredProducts.length === 0 || window.location.href.indexOf('signin') >= 0) {
       this.setState({ loading: true });
