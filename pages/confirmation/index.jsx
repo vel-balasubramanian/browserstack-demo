@@ -6,6 +6,11 @@ import store2 from 'store2';
 const { jsPDF } = require("jspdf");
 import 'jspdf-autotable'
 import '../checkout/style.scss';
+import {
+  isChrome,
+  isChromium,
+  isEdge,
+} from "react-device-detect";
 
 const CheckOut = ({ cartTotal }) => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -73,7 +78,7 @@ const CheckOut = ({ cartTotal }) => {
                         <legend id="confirmation-message" className="form-legend optimizedCheckout-headingSecondary" data-test="shipping-address-heading">Your Order has been successfully placed.</legend>
                       </div>
                       <div>
-                        Your order number is <strong>{Math.floor(Math.random() * 100) + 1}</strong>. <br/> <a id="downloadpdf" className="underline cursor-pointer" onClick={generatePDF}>Download order receipt</a>
+                        Your order number is <strong>{Math.floor(Math.random() * 100) + 1}</strong>. <br/> { (!isChrome && !isEdge) ? <a id="downloadpdf" className="underline cursor-pointer" onClick={generatePDF}>Download order receipt</a>  : <a id="downloadpdf" className="underline cursor-pointer">Download order receipt</a> }
                       </div>
                     </div>
                   </div>
