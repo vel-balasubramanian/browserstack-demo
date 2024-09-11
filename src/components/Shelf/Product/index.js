@@ -7,7 +7,8 @@ import {
   isChrome,
   isFirefox,
   browserVersion,
-  isEdge
+  isEdge,
+  isIOS
 } from "react-device-detect";
 
 import { setFavProduct } from '../../../services/shelf/actions';
@@ -33,6 +34,7 @@ const Product = props => {
   if (!!product.installments) {
     const installmentPrice = product.price / product.installments;
 
+    if (!isIOS)
     productInstallment = (
       <div className="installment">
         <span>or {product.installments} x</span>
