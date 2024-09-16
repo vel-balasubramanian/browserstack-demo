@@ -34,6 +34,7 @@ const optimizedImagesConfig = {
 };
 
 const nextConfiguration = {
+  output: "standalone",
   webpack: config => {
     config.plugins.push(
       new webpack.DefinePlugin({
